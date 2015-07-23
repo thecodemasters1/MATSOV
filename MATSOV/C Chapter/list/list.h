@@ -1,46 +1,48 @@
 #include <stdlib.h>
 
+#if !defined(ERROR)
 #define ERROR (-1)
+#endif
 
 typedef struct struct_node {
-
 	struct struct_node* prev;
-	int content;
+	double content;
 	struct struct_node* next;
 } Node;
 
 typedef struct struct_list {
-
 	Node* first;
 	Node* last;
 	unsigned int length;
-	long int sum;
+	long double sum;
 } List;
 
-Node* create_node(int content);
-List* create_list(int content);
+Node* create_node(double content);
+List* create_list(double content);
 int destroy(List* list);
-Node* add(List* list, int content);
+Node* add(List* list, double content);
 int remove_node(List* list, Node* node);
 int get_length(List* list);
 Node* get_first(List* list);
 Node* get_last(List* list);
 Node* get_prev(Node* node);
 Node* get_next(Node* node);
-int get_content(Node* node);
+double get_content(Node* node);
 double get_average(List* list);
 
-Node* create_node(int content) /* Creates a node with a content given */
+Node* create_node(double content) /* Creates a node with a content given */
 {
 	Node* temp_node = malloc(sizeof(Node));
 	if(temp_node == NULL) {
 		return NULL;
 	}
+	temp_node->prev = NULL;
 	temp_node->content = content;
+	temp_node->next = NULL;
 	return temp_node;
 }
 
-List* create_list(int content) /* Creates a list with one node only */
+List* create_list(double content) /* Creates a list with one node only */
 {
 	List* list = malloc(sizeof(List));
 	if(list == NULL) {
@@ -79,7 +81,7 @@ int destroy(List* list)
 	return 0;
 }
 
-Node* add(List* list, int content)  /* Creates and adds a node with a content given */
+Node* add(List* list, double content)  /* Creates and adds a node with a content given */
 {									/* at the end of the list */
 	if(list == NULL) {
 		return NULL;
@@ -155,7 +157,7 @@ Node* get_prev(Node* node)
 	return NULL;
 }
 
-int get_content(Node* node)
+double get_content(Node* node)
 {
 	if(node != NULL) {
 		return node->content;
