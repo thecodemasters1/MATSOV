@@ -102,6 +102,7 @@ int remove_node(List* list, Node* node)
 	if(list == NULL || node == NULL) {
 		return ERROR;
 	}
+	list->sum -= node->content;
 	if(node == list->first) { /* deletes the first node */
 		node->next->prev = NULL;
 		list->first = node->next;
