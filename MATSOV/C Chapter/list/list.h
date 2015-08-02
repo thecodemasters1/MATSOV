@@ -50,10 +50,10 @@ List* create_list(double content) /* Creates a list with one node only */
 	}
 	list->length = 0;
 	list->sum = 0;
-	Node* new_node = create_node(content);
+	Node* new_node = create_node(content); // T: check new node is not null
 
 	new_node->prev = NULL; /* Setting the node to be the only one in the list */
-	new_node->next = NULL;
+	new_node->next = NULL; // T: new node prev and next already null
 	list->first = new_node;
 	list->last = new_node;
 
@@ -70,7 +70,7 @@ int destroy(List* list)
 	}
 	Node* cur_node = list->first;
 	Node* next_node = cur_node->next;
-	while(cur_node != list->last)
+	while(cur_node != list->last) // T: condition can be: cur_node != null
 	{
 		remove_node(list, cur_node);
 		cur_node = next_node;
@@ -86,7 +86,7 @@ Node* add(List* list, double content)  /* Creates and adds a node with a content
 	if(list == NULL) {
 		return NULL;
 	}
-	Node* new_node = create_node(content);
+	Node* new_node = create_node(content); // T: check ne node is not null
 	list->last->next = new_node;
 
 	new_node->prev = list->last;
@@ -168,6 +168,6 @@ double get_content(Node* node)
 
 double get_average(List* list)
 {
-	double average = (double)(list->sum / list->length);
+	double average = (double)(list->sum / list->length); // T: check list is not null
 	return average;
 }
