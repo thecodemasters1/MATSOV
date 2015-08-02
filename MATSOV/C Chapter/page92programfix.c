@@ -53,7 +53,7 @@ int main(int argc, char * argv[])
 
 	while(p < q) {
 
-		while(0 == isalpha(*p)) {
+		while(0 == isalpha(*p)) { // What is the return value of isalpha? :)
 
 			++p;
 		}
