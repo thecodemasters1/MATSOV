@@ -74,7 +74,7 @@ int scan_file(FILE* file) /* scans the text file and writes a temp file with the
 		return error("curword or synonym couldn't be allocated");
 	}
 
-	while(fscanf(file, "%s ", curword) != EOF)
+	while(fscanf(file, "%s ", curword) != EOF) // T: what will happend when the wordlength will be 15 or 16?
 	{
 		synonym = find_synonym(curword);
 		if(synonym == NULL) {
@@ -83,7 +83,7 @@ int scan_file(FILE* file) /* scans the text file and writes a temp file with the
 		}
 		fprintf(temp_file, "%s ", synonym);
 	}
-	return 0;
+	return 0; // T: curword and synonym must be free
 }
 
 /* searches for a synonym in the vocabulary file.
@@ -98,7 +98,7 @@ char* find_synonym(char* word)
 	}
 
 	FILE* prevwordp;
-	if((prevwordp = fopen(vocab_file_name, "r")) == NULL) {
+	if((prevwordp = fopen(vocab_file_name, "r")) == NULL) { // T: not sure why you need to open this file again
 		return NULL;
 	}
 	rewind(vocab_file);
@@ -109,22 +109,22 @@ char* find_synonym(char* word)
 		{
 			if((curword)[0] == '0') {
 				fscanf(vocab_file, "%s ", curword);
-				free(prevwordp);
-				return (curword+1);
+				free(prevwordp); // T: close the prevwordp file
+				return (curword+1); // T: curword and prevword must be free because no one else will free the memory
 			} else {
-				free(prevwordp);
-				return (prevword+1);
+				free(prevwordp); // T: close the prevwordp file
+				return (prevword+1); // T: curword and prevword must be free because no one else will free the memory 
 			}
 		}
 		fscanf(prevwordp, "%s ", prevword);
 	}
-	free(prevword);
-	return word;
+	free(prevword); // T: free alse curword
+	return word; // T: close the prevwordp file
 }
 
 int identical(char* w1, char* w2) /* returns true if the strings are identical and false if not */
 {
-	if(strlen(w1) != strlen(w2)) {
+	if(strlen(w1) != strlen(w2)) { // T: what will happend when w1 or w2 wont end with null?
 		return false;
 	}
 
