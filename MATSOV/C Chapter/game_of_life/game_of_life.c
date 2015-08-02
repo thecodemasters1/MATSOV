@@ -31,8 +31,9 @@ int main(int argc, char* argv[])
 		printf("Else, the cell will start the game as a live cell.\n\n");
 	}
 
-	if(rows > MAX_BOARD_SIZE || columns > MAX_BOARD_SIZE) {
-		printf("Maximum board size (height or width) is 255!");
+	if(rows > MAX_BOARD_SIZE || columns > MAX_BOARD_SIZE) { // T: Should check rows and columns values after init
+// T: what if rows size will be less than 3?
+		printf("Maximum board size (height or width) is 255!"); // T: MAX_BOARD_SIZE accoring to you is 99
 		return ERROR;
 	}
 
@@ -43,7 +44,7 @@ int main(int argc, char* argv[])
 		printf("couldn't allocate memory for cell array");
 		return ERROR;
 	}
-
+        // T: seperate between operations- init board and parsing arguments
 	initialize_board(argv); /* creates the initial board according to arguments */
 
 	int i;
@@ -77,7 +78,7 @@ int string_to_int(char* numbers)
 	int i = (int)pow(10, strlen(numbers)-1);
 	for(;i>0;i/=10)
 	{
-		counter += i*((int)numbers[index]-48);
+		counter += i*((int)numbers[index]-48); // T: better write `0` instead of 48
 		++index;
 	}
 	return counter;
@@ -96,16 +97,16 @@ int initialize_board(char* argv[])
 				cell[i*columns + (rows/2-1)*columns + columns/2 - 1 + j] = 1;
 			}
 		}
-	}
+	} // T: Should be init of the rest of the board, not only the 9 squere
 
 	return 0;
 }
 
 int step_board() /* checks all of the cells and updates them by the rules */
 {
-	int newcell[rows][columns];
+	int newcell[rows][columns]; // T: compilation error, array size can't be variable
 	int liveneighs;
-
+        // T: init new cell array
 	int i, j;
 	for(i=0; i<rows; i++)
 	{
@@ -120,7 +121,7 @@ int step_board() /* checks all of the cells and updates them by the rules */
 			{
 			case 3: newcell[i][j] = 1;
 					break;
-			case 2: if(cell[i*columns+j] == 1) {
+			case 2: if(cell[i*columns+j] == 1) { // T: newcell[i][j]= cell[I*columns+j]
 						newcell[i][j] = 1;
 					} else {
 						newcell[i][j] = 0;
@@ -196,7 +197,7 @@ int count_live_neighbours(int row, int column) /* counts the live neighbours of 
 			}
 		}
 	}
-
+        // T: No, it will work but think about other way
 	return neighs;
 }
 
