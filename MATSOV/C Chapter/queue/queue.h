@@ -41,9 +41,9 @@ Queue* create_queue(double content)
 		return NULL; // no available memory
 	}
 	queue->first_node = create_node(content);
-	if(queue->first_node == NULL) {
+	if(queue->first_node == NULL) { // T: free queue memory
 		return NULL;
-	}
+	} // T: first node will be also the last node
 	queue->length = 1;
 	return queue;
 }
@@ -61,12 +61,12 @@ int destroy(Queue* queue) {
 }
 
 Queue* add(Queue* queue, Node* node) {
-	if(node == NULL) {
+	if(node == NULL) { T: check queue is not null
 		return NULL;
 	}
 	queue->last_node->next = node;
 	queue->last_node = node;
-	++(queue->length);
+	++(queue->length); // T: notice when queue is empty then this added node is false the first node
 	return queue;
 }
 
@@ -74,7 +74,7 @@ double top(Queue* queue) { /* returns the first node of the queue without removi
 	if(queue == NULL) {
 		return NULL;
 	}
-	return queue->first_node;
+	return queue->first_node; // T: should return the content, not the node
 }
 
 double pop(Queue* queue) { /* returns the first node of the queue and removes it */
@@ -86,7 +86,7 @@ double pop(Queue* queue) { /* returns the first node of the queue and removes it
 	--(queue->length);
 
 	double cont = top_node->content;
-	free(top_node);
+	free(top_node); // T: if it was the last node then last node should be null
 	return cont;
 }
 
