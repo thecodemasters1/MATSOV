@@ -63,6 +63,7 @@ int main()
 		case 100:
 			cout << "Bar is closed. Good Night!\n\n";
 			barClosed = true;
+			return 0;
 			break;
 		default: lastDrink = stock[userChoice-1];
 				cout << "One " << lastDrink->getName() << " coming up, sir.\n\n";
