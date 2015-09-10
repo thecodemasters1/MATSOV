@@ -12,7 +12,7 @@ using namespace std;
 const int SHELF_SIZE = 10;
 
 void printOptions(Drink* stock[]);
-void freeStock(Drink* stock[]);
+void freeStock(Drink* stock[], int size);
 
 int main()
 {
@@ -84,7 +84,11 @@ void printOptions(Drink* stock[])
 	cout << "(100) Leave the bar\n\n";
 }
 
-void freeStock(Drink* stock[])
+void freeStock(Drink* stock[], int size)
 {
+	for(int i = 0; i < size; i++)
+	{
+		delete stock[i];
+	}
 	delete[] stock;
 }
