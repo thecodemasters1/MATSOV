@@ -96,7 +96,7 @@ Fraction& Fraction::operator +=(const Fraction& frac)
 	Fraction newFrac = operator +(frac);
 	m_nominator = newFrac.getNominator();
 	m_denominator = newFrac.getDenominator();
-	return newFrac;
+	return *this;
 }
 
 Fraction& Fraction::operator -=(const Fraction& frac)
@@ -104,7 +104,7 @@ Fraction& Fraction::operator -=(const Fraction& frac)
 	Fraction newFrac = operator -(frac);
 	m_nominator = newFrac.getNominator();
 	m_denominator = newFrac.getDenominator();
-	return newFrac;
+	return *this;
 }
 
 Fraction& Fraction::operator *=(const Fraction& frac)
@@ -112,7 +112,7 @@ Fraction& Fraction::operator *=(const Fraction& frac)
 	Fraction newFrac = operator *(frac);
 	m_nominator = newFrac.getNominator();
 	m_denominator = newFrac.getDenominator();
-	return newFrac;
+	return *this;
 }
 
 Fraction& Fraction::operator /=(const Fraction& frac)
@@ -120,7 +120,7 @@ Fraction& Fraction::operator /=(const Fraction& frac)
 	Fraction newFrac = operator /(frac);
 	m_nominator = newFrac.getNominator();
 	m_denominator = newFrac.getDenominator();
-	return newFrac;
+	return *this;
 }
 
 Fraction& Fraction::operator ++()
@@ -128,7 +128,7 @@ Fraction& Fraction::operator ++()
 	Fraction newFrac = operator +(Fraction(1));
 	m_nominator = newFrac.getNominator();
 	m_denominator = newFrac.getDenominator();
-	return newFrac;
+	return *this;
 }
 
 Fraction& Fraction::operator --()
@@ -136,7 +136,7 @@ Fraction& Fraction::operator --()
 	Fraction newFrac = operator -(Fraction(1));
 	m_nominator = newFrac.getNominator();
 	m_denominator = newFrac.getDenominator();
-	return newFrac;
+	return *this;
 }
 
 bool Fraction::operator ==(const Fraction& frac) const
