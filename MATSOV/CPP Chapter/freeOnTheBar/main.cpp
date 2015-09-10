@@ -12,6 +12,7 @@ using namespace std;
 const int SHELF_SIZE = 10;
 
 void printOptions(Drink* stock[]);
+void freeStock(Drink* stock[]);
 
 int main()
 {
@@ -63,6 +64,7 @@ int main()
 		case 100:
 			cout << "Bar is closed. Good Night!\n\n";
 			barClosed = true;
+			freeStock(stock);
 			return 0;
 			break;
 		default: lastDrink = stock[userChoice-1];
@@ -80,4 +82,9 @@ void printOptions(Drink* stock[])
 	}
 	cout << "(99)  How did you prepare my last drink?\n";
 	cout << "(100) Leave the bar\n\n";
+}
+
+void freeStock(Drink* stock[])
+{
+	delete[] stock;
 }
