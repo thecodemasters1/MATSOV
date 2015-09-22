@@ -5,10 +5,10 @@
 #include <iostream>
 using namespace std;
 
-bool supports(string op_string, const char** names, int arrLen);
+bool supports(string op_string, const char** names, int arrLen); // T: not OOP! should be in CalculatorOperation class
 
 // Set operator possible names
-const char* setNames[] = {"Set", "set"};
+const char* setNames[] = {"Set", "set"}; // T: not OOP! should be stored at relevant class - OpSet
 const int setNamesLen = 2;
 // Addition operator possible names
 const char* addNames[] = {"+", "add", "Add"};
@@ -22,6 +22,8 @@ const int multiplyNamesLen = 5;
 // Division operator possible names
 const char* divideNames[] = {"/", "divide", "Divide"};
 const int divideNamesLen = 3;
+
+// T: for every clacResult implement check if you have exactly number of params else throw a specific exception
 
 // Addition operator methods
 bool OpSet::supportsOperation(string op_string)
