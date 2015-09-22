@@ -1,12 +1,13 @@
 #include "fraction.h"
 
 #include <iostream>
-#include <stdexcept>
+
+const char* DIVIDE_BY_ZERO = "Divide by zero not applicable"; // T: ha?
 
 Fraction::Fraction(int nominator, int denominator)
 {
 	if(denominator == 0) {
-		throw std::overflow_error("Divide by Zero Exception");
+		throw DIVIDE_BY_ZERO; // T: ahhh.. throw a specific exception not a string
 	}
 	m_nominator = nominator;
 	m_denominator = denominator;
@@ -18,18 +19,11 @@ Fraction::Fraction(int number)
 	m_denominator = 1;
 }
 
-void Fraction::setDenominator(int newDenom)
-{
-	if(newDenom == 0) {
-		throw std::overflow_error("Divide by Zero Exception");
-	}
-	m_denominator = newDenom;
-}
-
 void Fraction::reduction()
 {
 	int maxDivider = 1;
 
+	// T: better start from min(m_nominator,m_denominator) and go down, first divider will be the max divider
 	for(int testDivider = 2; testDivider <= (m_nominator > m_denominator ? m_denominator : m_nominator); testDivider++)
 	{
 		if(m_nominator % testDivider == 0 && m_denominator % testDivider == 0)
@@ -92,7 +86,7 @@ Fraction Fraction::operator *(const Fraction& frac) const // Multiple nominators
 
 Fraction Fraction::operator /(const Fraction& frac) const // Multiple nominator with denominator
 {
-	if(frac.getNominator() == 0) { throw std::overflow_error("Divide by Zero Exception"); }
+	if(frac.getNominator() == 0) { throw DIVIDE_BY_ZERO; } // T: throw a specific exception not a string
 	Fraction newFrac =  Fraction( m_nominator*frac.getDenominator(),
 								  m_denominator*frac.getNominator() );
 	newFrac.reduction();
