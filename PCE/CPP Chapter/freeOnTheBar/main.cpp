@@ -16,7 +16,7 @@ void freeStock(Drink* stock[], int size);
 
 int main()
 {
-	Drink* stock[SHELF_SIZE];
+	Drink* stock[SHELF_SIZE]; // T: better create a new class Bar, and seperete logic and input/output operations
 	// Beers
 	stock[0] = new Beer("Heineken");
 	stock[1] = new Beer("Carlsberg");
@@ -33,7 +33,7 @@ int main()
 	stock[10] = new ChadeauMargot(2010);
 
 	bool barClosed = false;
-	int userChoice = 200;
+	int userChoice = 200; // T: why 200? 0 is also ok
 	char* userInput = new char[3];
 	Drink* lastDrink = NULL;
 
@@ -65,7 +65,7 @@ int main()
 			cout << "Bar is closed. Good Night!\n\n";
 			barClosed = true;
 			freeStock(stock, SHELF_SIZE);
-			return 0;
+			return 0; // T: return shouldn`t be here, write it outside the while loop
 			break;
 		default: lastDrink = stock[userChoice-1];
 				cout << "One " << lastDrink->getName() << " coming up, sir.\n\n";
