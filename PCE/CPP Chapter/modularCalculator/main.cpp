@@ -16,7 +16,7 @@ bool isOperator(char c);
 void freeOps();
 
 // main function. enter "end" or "End" to close the calculator.
-int main()
+int main() // T: main too long, create new class - Calculator, seperate logic from I/O operations
 {
 	ops[0] = new OpSet();
 	ops[1] = new OpAdd();
