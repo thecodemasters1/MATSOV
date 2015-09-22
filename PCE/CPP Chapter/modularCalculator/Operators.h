@@ -1,4 +1,4 @@
-#include "CalculatorOperation.h"
+#include "CalculatorOperation.h" // T: missing ifdef header
 
 /* Non-mathematical operators */
 
