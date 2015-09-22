@@ -1,12 +1,12 @@
 #include "fraction.h"
-#include <iostream>
 
-const char* DIVIDE_BY_ZERO = "Divide by zero not applicable";
+#include <iostream>
+#include <stdexcept>
 
 Fraction::Fraction(int nominator, int denominator)
 {
 	if(denominator == 0) {
-		throw DIVIDE_BY_ZERO;
+		throw std::overflow_error("Divide by Zero Exception");
 	}
 	m_nominator = nominator;
 	m_denominator = denominator;
@@ -16,6 +16,14 @@ Fraction::Fraction(int number)
 {
 	m_nominator = number;
 	m_denominator = 1;
+}
+
+void Fraction::setDenominator(int newDenom)
+{
+	if(newDenom == 0) {
+		throw std::overflow_error("Divide by Zero Exception");
+	}
+	m_denominator = newDenom;
 }
 
 void Fraction::reduction()
@@ -84,7 +92,7 @@ Fraction Fraction::operator *(const Fraction& frac) const // Multiple nominators
 
 Fraction Fraction::operator /(const Fraction& frac) const // Multiple nominator with denominator
 {
-	if(frac.getNominator() == 0) { throw DIVIDE_BY_ZERO; }
+	if(frac.getNominator() == 0) { throw std::overflow_error("Divide by Zero Exception"); }
 	Fraction newFrac =  Fraction( m_nominator*frac.getDenominator(),
 								  m_denominator*frac.getNominator() );
 	newFrac.reduction();

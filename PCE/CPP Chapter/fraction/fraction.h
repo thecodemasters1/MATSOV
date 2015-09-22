@@ -1,3 +1,6 @@
+#ifndef FRACTIONH
+#define FRACTIONH
+
 #include <iostream>
 
 class Fraction
@@ -7,7 +10,7 @@ public:
 	Fraction(int number); // constructor from int
 
 	void setNominator(int newNom) { m_nominator = newNom; }
-	void setDenominator(int newDenom) { m_denominator = newDenom; }
+	void setDenominator(int newDenom);
 	int getNominator() const { return m_nominator; }
 	int getDenominator() const { return m_denominator; }
 
@@ -48,3 +51,5 @@ private:
 	int m_nominator;
 	int m_denominator;
 };
+
+#endif

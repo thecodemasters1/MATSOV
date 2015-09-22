@@ -64,7 +64,7 @@ int main()
 		case 100:
 			cout << "Bar is closed. Good Night!\n\n";
 			barClosed = true;
-			freeStock(stock);
+			freeStock(stock, SHELF_SIZE);
 			return 0;
 			break;
 		default: lastDrink = stock[userChoice-1];

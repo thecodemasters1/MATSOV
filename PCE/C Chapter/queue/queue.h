@@ -44,6 +44,7 @@ Queue* create_queue(double content)
 	if(queue->first_node == NULL) {
 		return NULL;
 	}
+	queue->last_node = queue->first_node;
 	queue->length = 1;
 	return queue;
 }
